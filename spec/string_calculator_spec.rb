@@ -10,10 +10,19 @@ describe StringCalculator do
 
     context "given any amount of numbers" do
       it "should return number" do
-        expect(StringCalculator.add("1,\n")).to eq(1)
+        expect(StringCalculator.add("1")).to eq(1)
       end
       it "should return sum of numbers" do
         expect(StringCalculator.add("1, 2, 3, 4")).to eq(10)
+      end
+    end
+
+    context 'multiple delimiters' do
+      it "should handle new lines between numbers" do
+        expect(StringCalculator.add("1\n2,3")).to eq(6)
+      end
+      it 'should return input is invalid' do
+        expect(StringCalculator.add("1,\n")).to eq('Invalid Input')
       end
     end
   end
