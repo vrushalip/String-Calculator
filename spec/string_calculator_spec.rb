@@ -24,6 +24,12 @@ describe StringCalculator do
       it 'should return input is invalid' do
         expect(StringCalculator.add("1,\n")).to eq('Invalid Input')
       end
+      it "should support multiple delimiters" do
+        expect(StringCalculator.add("//;\n1;2")).to eq(3)
+      end
+      it "should throw error for negative numbers" do
+        expect(StringCalculator.add("//;\n-1;2;-3;-4")).to eq('negative numbers not allowed -1,-3,-4')
+      end
     end
   end
 end
